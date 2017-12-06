@@ -54,6 +54,11 @@ class Terrain
     private $latitude;
 
     /**
+    * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="departure")
+    */
+    private $departure;
+
+    /**
      * @var float
      *
      * @ORM\Column(name="longitude", type="float")
@@ -88,15 +93,6 @@ class Terrain
      */
     private $country;
 
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="departure")
-     */
-    private $departures;
-
-    /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="arrival")
-     */
-    private $arrivals;
 
     /**
      * Get id

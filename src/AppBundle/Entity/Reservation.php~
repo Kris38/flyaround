@@ -39,7 +39,7 @@ class Reservation
     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User", mappedBy="reservations")
     * @ORM\JoinColumn(nullable=false)
     */
-    private $passenger;
+    private $passengers;
 
     /**
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Flight", inversedBy="reservations")

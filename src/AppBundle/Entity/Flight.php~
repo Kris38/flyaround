@@ -22,9 +22,9 @@ class Flight
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Terrain", inversedBy="departures")
-     * @ORM\JoinColumn(nullable=false)
-     */
+    * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Terrain", inversedBy="departures")
+    * @ORM\JoinColumn(nullable=false)
+    */
     private $departure;
 
     /**
@@ -34,8 +34,9 @@ class Flight
     private $reservations;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Terrain", inversedBy="arrivals")
-     * @ORM\JoinColumn(nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="arrival", type="string", length=32)
      */
     private $arrival;
 
@@ -75,14 +76,16 @@ class Flight
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="pilots")
-     * @ORM\JoinColumn(nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="pilot", type="string", length=32)
      */
     private $pilot;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\PlaneModel", inversedBy="planes")
-     * @ORM\JoinColumn(nullable=false)
+     * @var string
+     *
+     * @ORM\Column(name="plane", type="string", length=64)
      */
     private $plane;
 
@@ -342,46 +345,5 @@ class Flight
     public function getWasDone()
     {
         return $this->wasDone;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->reservations = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add reservation
-     *
-     * @param \AppBundle\Entity\Reservation $reservation
-     *
-     * @return Flight
-     */
-    public function addReservation(\AppBundle\Entity\Reservation $reservation)
-    {
-        $this->reservations[] = $reservation;
-
-        return $this;
-    }
-
-    /**
-     * Remove reservation
-     *
-     * @param \AppBundle\Entity\Reservation $reservation
-     */
-    public function removeReservation(\AppBundle\Entity\Reservation $reservation)
-    {
-        $this->reservations->removeElement($reservation);
-    }
-
-    /**
-     * Get reservations
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getReservations()
-    {
-        return $this->reservations;
     }
 }
